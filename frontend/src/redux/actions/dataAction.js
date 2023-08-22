@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = process.env.REACT_APP2_API;
+const URL = process.env.REACT_APP2_API || "localhost:8000";
 
 export const fetchBackendData = () => {
     return async (dispatch) =>{
