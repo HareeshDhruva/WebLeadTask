@@ -1,5 +1,5 @@
 import axios from 'axios'
-const URL = process.env.REACT_APP2_API || "localhost:8000";
+const URL = 'https://webleadbackend.onrender.com';
 
 export const fetchBackendData = () => {
     return async (dispatch) =>{
