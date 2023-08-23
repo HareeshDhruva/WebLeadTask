@@ -79,9 +79,6 @@ export const userRegister = (register)=>{
       });
   };
 };
-
-
-
 export const updateUser = (register)=>{
   return async (dispatch) => {
     dispatch({ type:'PRODUCT_REQUEST'});
@@ -99,9 +96,6 @@ export const updateUser = (register)=>{
       });
   };
 };
-
-
-
 export const RemoveUser = (email)=>{
     const user = {email:email}
   return async (dispatch) => {
