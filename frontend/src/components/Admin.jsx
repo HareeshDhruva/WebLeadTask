@@ -6,14 +6,14 @@ import {AppBar, Avatar, Box, Button,Dialog,Toolbar, Typography,TextField, Table,
 import {fetchBackendData, Adduser,RemoveUser,fetchBackendAdminData} from '../redux/actions/dataAction'
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
   const {data} = useSelector(state => state.data);
   const {admin} = useSelector(state => state.admin);
 
   const Navigate = useNavigate();
-
+  const [Dopen, DsetOpen] = useState(true);
   const dispatch = useDispatch(); 
 
   const chooseRole = {
@@ -68,6 +68,11 @@ const Home = () => {
     dispatch(fetchBackendData())
     dispatch(fetchBackendAdminData())
   },[dispatch]);
+
+  const handleDelay = () =>{
+    DsetOpen(false)
+  }
+  setTimeout(handleDelay,5000)
 
   return (
     <>
@@ -136,6 +141,18 @@ const Home = () => {
                 }}
                onClick={NewRegister}>ADD USER</Button>
        </Dialog>
+
+       <Dialog open = {Dopen} onClose={handleClose}>
+       {
+        admin.map(item => (
+        <Box sx={{width:500, height:500, borderRadius:4 ,display:'flex', alignItems:'center', justifyContent:'center',flexDirection:'column',gap:5}}>
+        <box>
+            <Typography sx={{fontFamily:'monospace', color:`${all.blue[500]}`,fontSize:20,textShadow:`0 0 10px ${all.blue[500]}`}}>Welcome, {item.name}</Typography>
+        </box>
+          <Box><CircularProgress color="primary" /></Box>
+        </Box>
+        ))}
+        </Dialog>
 
       <Box sx={{height:'93vh',marginTop:8,position:'fixed',left:0,right:0,top:0}}>
         <Table>
