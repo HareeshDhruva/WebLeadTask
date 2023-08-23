@@ -6,6 +6,7 @@ import {AppBar, Avatar, Box, Button,Toolbar, Typography,Table,TableCell,TableHea
 import {fetchBackendData, updateUser} from '../redux/actions/dataAction'
 import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const User = () => {
   const {data} = useSelector(state => state.data);
@@ -32,15 +33,21 @@ const User = () => {
     setOpen(false)
     DsetOpen(false)
   }
+
   
   const InputChange = (e)=>{
     setRegister({...register, [e.target.name]:e.target.value});
   }
-
+  
   const Logout = async () => {
-  dispatch({type:'logout'})
-  Navigate('/');
+    dispatch({type:'logout'})
+    Navigate('/');
   }
+  
+  const handleDelay = () =>{
+    DsetOpen(false)
+  }
+  setTimeout(handleDelay,5000)
 
   return (
     <>
@@ -114,8 +121,11 @@ const User = () => {
        <Dialog open = {Dopen} onClose={handleClose}>
        {
         user.map(item => (
-        <Box sx={{width:500, height:500, borderRadius:4 ,display:'flex', alignItems:'center', justifyContent:'center'}}>
-            <Typography sx={{fontFamily:'monospace', color:`${all.blue[500]}`,fontSize:20,textShadow:`0 0 10px ${all.blue[500]}`}}>Welcom, {item.name}</Typography>
+        <Box sx={{width:500, height:500, borderRadius:4 ,display:'flex', alignItems:'center', justifyContent:'center',flexDirection:'column',gap:5}}>
+        <box>
+            <Typography sx={{fontFamily:'monospace', color:`${all.blue[500]}`,fontSize:20,textShadow:`0 0 10px ${all.blue[500]}`}}>Welcome, {item.name}</Typography>
+        </box>
+          <Box><CircularProgress color="primary" /></Box>
         </Box>
         ))}
         </Dialog>
