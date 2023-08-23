@@ -60,7 +60,7 @@ const User = () => {
             <Toolbar>
             <Box sx={{display:'flex', justifyContent:'space-between',width:'90%',margin:'auto'}}>
               <Box sx={{display:'flex',gap:3, alignItems:'center'}}>
-                <Avatar/>
+                <Avatar sx={{bgcolor:all.orange[400]}}>{item.name[0]}</Avatar>
                 <Typography>{item.name}</Typography>
               </Box>
               <Box sx={{display:'flex',gap:3,alignItems:'center'}}>
